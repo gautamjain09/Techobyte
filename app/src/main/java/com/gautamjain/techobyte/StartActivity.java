@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StartActivity extends AppCompatActivity {
 
     private ImageView iconImage;
@@ -31,12 +33,13 @@ public class StartActivity extends AppCompatActivity {
 
         linearLayout.animate().alpha(0f).setDuration(2);
 
-        TranslateAnimation animation = new TranslateAnimation(0,0,0,-1000);
+        TranslateAnimation animation = new TranslateAnimation(0, 0, 0, -1000);
         animation.setDuration(1100);
         animation.setFillAfter(false);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) { }
+            public void onAnimationStart(Animation animation) {
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -46,7 +49,8 @@ public class StartActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) { }
+            public void onAnimationRepeat(Animation animation) {
+            }
         });
 
         iconImage.setAnimation(animation);
@@ -66,7 +70,16 @@ public class StartActivity extends AppCompatActivity {
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
-
-
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+//        {
+//            startActivity(new Intent(StartActivity.this, MainActivity.class));
+//            finish();
+//        }
+//    }
+
 }

@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Techobyte">
 
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".PostActivity"></activity>
 
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".LoginActivity" />
+
+        <activity android:name=".RegisterActivity" />
 
         <activity android:name=".StartActivity">
             <intent-filter>
@@ -25,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
     </application>
+
 
 </manifest>

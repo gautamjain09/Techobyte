@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(text_name) || TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)
                         || TextUtils.isEmpty(text_username))
                 {
-                    Toast.makeText(RegisterActivity.this, "Empty Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Empty Credentials!", Toast.LENGTH_SHORT).show();
                 }
                 else if(text_password.length() < 6)
                 {
@@ -94,10 +94,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 HashMap<String , Object> mp = new HashMap<>();
-                mp.put("name",name);
-                mp.put("email", email);
-                mp.put("username",username);
-                mp.put("id", auth.getCurrentUser().getUid());
+                mp.put("Name",name);
+                mp.put("Email", email);
+                mp.put("Username",username);
+                mp.put("Id", auth.getCurrentUser().getUid());
+                mp.put("Bio","");
+                mp.put("ImageUrl","default");
 
                 dbref.child("Users").child(auth.getCurrentUser().getUid()).setValue(mp).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
