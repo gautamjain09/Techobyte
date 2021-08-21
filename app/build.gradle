@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.gautamjain.techobyte"
-        minSdkVersion 16
+        minSdkVersion 22 // 16 default
         targetSdkVersion 30
         multiDexEnabled true
         versionCode 1
@@ -42,7 +42,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
 
     implementation 'com.github.hasankucuk:SocialTextView:1.0.0'
-    implementation "com.theartofdev.edmodo:android-image-cropper:2.8.0"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
