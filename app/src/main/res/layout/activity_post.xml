@@ -70,7 +70,6 @@
             app:hashtagColor="@color/purple_500"
             app:linkType="mention|hashtag|phone|email|url"/>
 
-
     </LinearLayout>
 
 

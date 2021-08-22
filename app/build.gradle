@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
 
     implementation 'com.github.hasankucuk:SocialTextView:1.0.0'
+    implementation "com.github.CanHub:Android-Image-Cropper:3.2.2"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
