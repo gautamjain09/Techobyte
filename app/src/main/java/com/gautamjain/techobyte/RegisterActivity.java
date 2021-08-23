@@ -94,12 +94,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 HashMap<String , Object> mp = new HashMap<>();
-                mp.put("Name",name);
-                mp.put("Email", email);
-                mp.put("Username",username);
-                mp.put("Id", auth.getCurrentUser().getUid());
-                mp.put("Bio","");
-                mp.put("ImageUrl","default");
+                mp.put("name",name);
+                mp.put("email", email);
+                mp.put("username",username);
+                mp.put("id", auth.getCurrentUser().getUid());
+                mp.put("bio","");
+                mp.put("imageUrl","default");
 
                 dbref.child("Users").child(auth.getCurrentUser().getUid()).setValue(mp).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

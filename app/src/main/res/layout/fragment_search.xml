@@ -30,8 +30,7 @@
                 android:hint="Search..."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:layout_marginLeft="20dp"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -42,13 +41,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar_Search_Fragment"
-        android:padding="10dp"/>
+        android:padding="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recycler_view_tags_search_Fragments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Recycler_view_search_Fragments"
-        android:padding="10dp"/>
-
+        android:padding="5dp"/>
 
 </RelativeLayout>
