@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.canhub.cropper.CropImage;
-import com.canhub.cropper.CropImageActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-
 import com.hasankucuk.socialtextview.SocialTextView;
 
 import java.util.HashMap;
@@ -116,7 +114,7 @@ public class PostActivity extends AppCompatActivity {
 //                   <---------------------------------- Adding Hastags Information ---------------------------->
 
 //                    DatabaseReference hashtags_ref = FirebaseDatabase.getInstance().getReference().child("Hashtags");
-//                    List<String> hashtags = description.getHashtags(); // hash
+//                    List<String> hashtags = description.getHashtags(); // hashtag library not working
 //                    if(!hashtags.isEmpty())
 //                    {
 //                        for(String tag: hashtags)
@@ -128,6 +126,7 @@ public class PostActivity extends AppCompatActivity {
 //                            hashtags_ref.child(tag.toLowerCase()).setValue(mp);
 //                        }
 //                    }
+
 
                     progressDialog.dismiss();
                     startActivity(new Intent(PostActivity.this,MainActivity.class));

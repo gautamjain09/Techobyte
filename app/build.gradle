@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.github.hasankucuk:SocialTextView:1.0.0' // Social Text View
     implementation "com.github.CanHub:Android-Image-Cropper:3.2.2" // Image Cropper
     implementation 'de.hdodenhof:circleimageview:3.1.0' // Circle Image View
+    implementation 'com.squareup.picasso:picasso:2.71828' // Profile Image Setter
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
