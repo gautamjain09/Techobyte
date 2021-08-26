@@ -54,10 +54,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         holder.btnfollow.setVisibility(View.VISIBLE);
 
         holder.username.setText(user.getUsername());
-        holder.fullname.setText(user.getName());
+        holder.name.setText(user.getName());
 
         Picasso.get().load(user.getImageUrl()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
-        isFollowed(user.getId(),holder.btnfollow);
+        isFollowed(user.getId(), holder.btnfollow);
 
         if(user.getId().equals(firebaseUser.getUid()))
         {
@@ -84,9 +84,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                }
 
                @Override
-               public void onCancelled(@NonNull DatabaseError error) {
-
-               }
+               public void onCancelled(@NonNull DatabaseError error) {}
            });
     }
 
@@ -99,7 +97,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         public CircleImageView imageProfile;
         public TextView username;
-        private TextView fullname;
+        private TextView name;
         public Button btnfollow;
 
         public ViewHolder(@NonNull View itemView) {
@@ -107,7 +105,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
             imageProfile = itemView.findViewById(R.id.profile_image);
             username = itemView.findViewById(R.id.username);
-            fullname = itemView.findViewById(R.id.Fullname);
+            name = itemView.findViewById(R.id.Fullname);
             btnfollow = itemView.findViewById(R.id.follow_btn);
 
         }

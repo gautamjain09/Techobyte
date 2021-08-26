@@ -4,6 +4,8 @@ public class User {
 
     private String username, name, id, bio, email,imageUrl;
 
+    public User(){}
+
     public User(String username, String name, String id, String bio, String email, String imageUrl) {
         this.username = username;
         this.name = name;
