@@ -41,7 +41,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:23.0.3'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
 
-    implementation 'com.github.hasankucuk:SocialTextView:1.0.0' // Social Text View
+    implementation "com.hendraanggrian.appcompat:socialview:0.2" // base library
+    implementation "com.hendraanggrian.appcompat:socialview-commons:0.2" // auto-complete hashtag and mention
     implementation "com.github.CanHub:Android-Image-Cropper:3.2.2" // Image Cropper
     implementation 'de.hdodenhof:circleimageview:3.1.0' // Circle Image View
     implementation 'com.squareup.picasso:picasso:2.71828' // Profile Image Setter

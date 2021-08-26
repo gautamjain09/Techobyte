@@ -23,13 +23,13 @@
                 android:layout_height="22dp"
                 android:src="@drawable/ic_search"/>
 
-            <com.hasankucuk.socialtextview.SocialTextView
+            <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
                 android:id="@+id/serch_bar_search_fragments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search..."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="15dp"/>
 
         </androidx.appcompat.widget.Toolbar>
 

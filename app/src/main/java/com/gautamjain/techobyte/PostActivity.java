@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.hasankucuk.socialtextview.SocialTextView;
+import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +38,7 @@ public class PostActivity extends AppCompatActivity {
     private ImageView close, image_added;
     private TextView post;
 
-    SocialTextView description;
+    private SocialAutoCompleteTextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,20 +113,19 @@ public class PostActivity extends AppCompatActivity {
 
 //                   <---------------------------------- Adding Hastags Information ---------------------------->
 
-//                    DatabaseReference hashtags_ref = FirebaseDatabase.getInstance().getReference().child("Hashtags");
-//                    List<String> hashtags = description.getHashtags(); // hashtag library not working
-//                    if(!hashtags.isEmpty())
-//                    {
-//                        for(String tag: hashtags)
-//                        {
-//                            mp.clear();
-//                            mp.put("Tags",tag.toLowerCase());
-//                            mp.put("PostId",postId);
-//
-//                            hashtags_ref.child(tag.toLowerCase()).setValue(mp);
-//                        }
-//                    }
+                    DatabaseReference hashtags_ref = FirebaseDatabase.getInstance().getReference().child("Hashtags");
+                    List<String> hashtags = description.getHashtags(); // hashtag library not working
+                    if(!hashtags.isEmpty())
+                    {
+                        for(String tag: hashtags)
+                        {
+                            mp.clear();
+                            mp.put("Tags",tag.toLowerCase());
+                            mp.put("PostId",postId);
 
+                            hashtags_ref.child(tag.toLowerCase()).child(postId).setValue(mp);
+                        }
+                    }
 
                     progressDialog.dismiss();
                     startActivity(new Intent(PostActivity.this,MainActivity.class));

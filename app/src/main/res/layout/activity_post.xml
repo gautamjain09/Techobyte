@@ -60,15 +60,16 @@
             android:src="@mipmap/ic_launcher"
             android:scaleType="centerInside"/>
 
-        <com.hasankucuk.socialtextview.SocialTextView
+        <com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView
             android:id="@+id/description_Post_Activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_marginTop="15dp"
             android:hint="Description..."
             android:maxLines="5"
-            app:hashtagColor="@color/purple_500"
-            app:linkType="mention|hashtag|phone|email|url"/>
+            app:hashtagColor="@color/purple_700"
+            app:socialFlags="hashtag|mention"/>
 
     </LinearLayout>
 

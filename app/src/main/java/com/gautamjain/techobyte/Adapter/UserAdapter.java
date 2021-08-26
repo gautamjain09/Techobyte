@@ -14,7 +14,11 @@ import com.gautamjain.techobyte.Modal.User;
 import com.gautamjain.techobyte.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,15 +57,37 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         holder.fullname.setText(user.getName());
 
         Picasso.get().load(user.getImageUrl()).placeholder(R.mipmap.ic_launcher).into(holder.imageProfile);
+        isFollowed(user.getId(),holder.btnfollow);
 
-        isFollewed(user.getId(),holder.btnfollow);
-
+        if(user.getId().equals(firebaseUser.getUid()))
+        {
+            holder.btnfollow.setVisibility(View.GONE);
+        }
     }
 
-    private void isFollewed(String id, Button btnfollow) {
+    private final void isFollowed(String id, Button btnfollow) {
 
+           DatabaseReference db_ref = FirebaseDatabase.getInstance().getReference().child("Follow")
+                   .child(firebaseUser.getUid()).child("following");
 
+           db_ref.addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if(snapshot.child(id).exists())
+                   {
+                       btnfollow.setText("following");
+                   }
+                   else
+                   {
+                       btnfollow.setText("follow");
+                   }
+               }
 
+               @Override
+               public void onCancelled(@NonNull DatabaseError error) {
+
+               }
+           });
     }
 
     @Override
@@ -72,7 +98,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public CircleImageView imageProfile;
-        public TextView username, fullname;
+        public TextView username;
+        private TextView fullname;
         public Button btnfollow;
 
         public ViewHolder(@NonNull View itemView) {
