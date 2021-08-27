@@ -1,5 +1,6 @@
 package com.gautamjain.techobyte.Fragments;
 
+import android.accessibilityservice.GestureDescription;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.gautamjain.techobyte.Adapter.TagAdapter;
 import com.gautamjain.techobyte.Adapter.UserAdapter;
 import com.gautamjain.techobyte.Modal.User;
 import com.gautamjain.techobyte.R;
@@ -34,11 +37,20 @@ public class SearchFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<User> mUsers;
     private UserAdapter userAdapter;
+
+    private RecyclerView recyclerViewTags;
+    private List<String> mHashtags;
+    private List<String> mHashtagsCount;
+    private TagAdapter mtagAdapter;
+
     private SocialAutoCompleteTextView search_bar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+
+//      <----------------------------- Listing users on Search --------------------------------->
 
         recyclerView = view.findViewById(R.id.Recycler_view_search_Fragments);
         recyclerView.setHasFixedSize(true);
@@ -49,8 +61,21 @@ public class SearchFragment extends Fragment {
         recyclerView.setAdapter(userAdapter);
 
 
+//      <----------------------------- Listing users on Search --------------------------------->
+
+        recyclerViewTags = view.findViewById(R.id.Recycler_view_tags_search_Fragments);
+        recyclerViewTags.setHasFixedSize(true);
+        recyclerViewTags.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mHashtags = new ArrayList<>();
+        mHashtagsCount = new ArrayList<>();
+        mtagAdapter = new TagAdapter(getContext(), mHashtags, mHashtagsCount);
+        recyclerViewTags.setAdapter(mtagAdapter);
+
         search_bar = view.findViewById(R.id.search_bar_search_fragments);
+
         readUsers();
+        readTags();
 
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -62,10 +87,34 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
         });
 
         return view;
+    }
+
+    private void readTags()
+    {
+        DatabaseReference db_reff = FirebaseDatabase.getInstance().getReference().child("Hashtags");
+        db_reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mHashtags.clear();
+                mHashtagsCount.clear();
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    mHashtags.add(dataSnapshot.getKey());
+                    mHashtagsCount.add(dataSnapshot.getChildrenCount() + "");
+                }
+                mtagAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {}
+        });
     }
 
     private void readUsers()
@@ -113,7 +162,22 @@ public class SearchFragment extends Fragment {
         });
     }
 
+    public void filter(String txt)
+    {
+        List<String> mSearchtags = new ArrayList<>();
+        List<String> mSearchtagsCount = new ArrayList<>();
 
+        for(String s : mHashtags)
+        {
+            if(s.toLowerCase().contains(txt.toLowerCase()))
+            {
+                mSearchtags.add(s);
+                mSearchtagsCount.add(mHashtagsCount.get(mHashtags.indexOf(s)));
+            }
+        }
 
+        mtagAdapter.filter(mSearchtags, mSearchtagsCount);
+
+    }
 
 }
