@@ -11,9 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gautamjain.techobyte.Modal.Post;
+import com.gautamjain.techobyte.Modal.User;
 import com.gautamjain.techobyte.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.squareup.picasso.Picasso;
 
@@ -39,12 +44,28 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
     @Override
     public void onBindViewHolder(@NonNull PostAdapter.Viewholder holder, int position) {
 
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Post post = mPost.get(position);
         Picasso.get().load(post.getImageurl()).into(holder.imagePost);
         holder.description.setText(post.getDescription());
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+
+                Picasso.get().load(user.getImageUrl()).into(holder.profileImage);
+                holder.username.setText(user.getUsername());
+                holder.author.setText(user.getName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
 
 
 
