@@ -2,50 +2,49 @@ package com.gautamjain.techobyte.Modal;
 
 public class Post {
 
-    private String description;
-    private String imageurl;
-    private String postid;
-    private String publisher;
+    private String Description;
+    private String ImageUrl;
+    private String PostId;
+    private String Publisher;
 
     public Post(){}
 
-    public Post(String description, String imageurl, String postid, String publisher) {
-        this.description = description;
-        this.imageurl = imageurl;
-        this.postid = postid;
-        this.publisher = publisher;
+    public Post(String description, String imageUrl, String postId, String publisher) {
+        Description = description;
+        ImageUrl = imageUrl;
+        PostId = postId;
+        Publisher = publisher;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        Description = description;
     }
 
-    public String getImageurl() {
-        return imageurl;
+    public String getImageUrl() {
+        return ImageUrl;
     }
 
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
     }
 
-    public String getPostid() {
-        return postid;
+    public String getPostId() {
+        return PostId;
     }
 
-    public void setPostid(String postid) {
-        this.postid = postid;
+    public void setPostId(String postId) {
+        PostId = postId;
     }
 
     public String getPublisher() {
-        return publisher;
+        return Publisher;
     }
 
     public void setPublisher(String publisher) {
-        this.publisher = publisher;
+        Publisher = publisher;
     }
-
 }

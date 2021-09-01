@@ -24,6 +24,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
 
     private Context mContext;
@@ -33,6 +35,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
     public PostAdapter(Context mContext, List<Post> mPost) {
         this.mContext = mContext;
         this.mPost = mPost;
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -46,8 +49,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        Post post = mPost.get(position);
-        Picasso.get().load(post.getImageurl()).into(holder.imagePost);
+        final Post post = mPost.get(position);
+        Picasso.get().load(post.getImageUrl()).into(holder.imagePost);
         holder.description.setText(post.getDescription());
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(post.getPublisher()).addValueEventListener(new ValueEventListener() {
@@ -55,20 +58,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
 
-                Picasso.get().load(user.getImageUrl()).into(holder.profileImage);
+                if(user.getImageUrl().equals("default"))
+                {
+                    holder.profileImage.setImageResource(R.mipmap.ic_launcher);
+                }
+                else
+                {
+                    Picasso.get().load(user.getImageUrl()).placeholder(R.mipmap.ic_launcher);
+                }
                 holder.username.setText(user.getUsername());
                 holder.author.setText(user.getName());
 
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull  DatabaseError error) {}
         });
-
-
-
+        
     }
 
     @Override
@@ -78,7 +84,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
 
     public class Viewholder extends RecyclerView.ViewHolder{
 
-        public ImageView profileImage;
+        public CircleImageView profileImage;
         public ImageView imagePost;
         public ImageView like;
         public ImageView comment;
@@ -94,7 +100,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
         public Viewholder(View itemView) {
             super(itemView);
 
-            profileImage = itemView.findViewById(R.id.profile_image);
+            profileImage = itemView.findViewById(R.id.profile_image_post);
             imagePost = itemView.findViewById(R.id.id_Image_post);
             like = itemView.findViewById(R.id.id_like);
             save = itemView.findViewById(R.id.id_save);

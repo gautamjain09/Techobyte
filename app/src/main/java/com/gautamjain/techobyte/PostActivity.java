@@ -113,7 +113,7 @@ public class PostActivity extends AppCompatActivity {
                     mp.put("PostId", postId);
                     mp.put("ImageUrl",image_url);
                     mp.put("Description",description.getText().toString());
-                    mp.put("Posted By", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    mp.put("Publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     dbref.child(postId).setValue(mp);
 

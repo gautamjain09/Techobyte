@@ -50,11 +50,10 @@ public class HomeFragment extends Fragment {
         followingList = new ArrayList<>();
         CheckFollowingList();
 
-
-
         return view;
     }
 
+    //Add all the user to the following list of current user
     private void CheckFollowingList() {
 
         FirebaseDatabase.getInstance().getReference().child("Follow").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -64,21 +63,47 @@ public class HomeFragment extends Fragment {
                 followingList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    followingList.add(snapshot.getKey());
+                    followingList.add(dataSnapshot.getKey());
                 }
 
-                readPosts();// All others users post will now be shown in our Home page
+                followingList.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                //All others posts of following list users will now be shown in Home page Current user
+                readPosts();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+    }
+
+    //Add the Post list to all the users in following list of current user
+    private void readPosts() {
+
+        FirebaseDatabase.getInstance().getReference().child("Posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                postList.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    Post post = dataSnapshot.getValue(Post.class);
+
+                    for(String id : followingList)
+                    {
+                        if(post.getPublisher().equals(id))
+                        {
+                            postList.add(post);
+                        }
+                    }
+                }
+
+                postAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull  DatabaseError error) {}
         });
-
-    }
-
-    private void readPosts() {
-
-        FirebaseDatabase.getInstance().getReference().child("Posts");
 
     }
 }

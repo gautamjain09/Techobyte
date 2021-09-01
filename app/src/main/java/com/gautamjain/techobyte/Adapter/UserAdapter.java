@@ -69,6 +69,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             public void onClick(View v) {
                 if(holder.btnfollow.getText().toString().equals("follow"))
                 {
+                    //firebaseUser current user
+                    //user is friend of current user
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid()).child("following").child(user.getId()).setValue(true);
 
@@ -89,25 +91,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
     private final void isFollowed(String id, Button btnfollow) {
 
-           DatabaseReference db_ref = FirebaseDatabase.getInstance().getReference().child("Follow")
-                   .child(firebaseUser.getUid()).child("following");
+        DatabaseReference db_ref = FirebaseDatabase.getInstance().getReference().child("Follow")
+                .child(firebaseUser.getUid()).child("following");
 
-           db_ref.addValueEventListener(new ValueEventListener() {
-               @Override
-               public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   if(snapshot.child(id).exists())
-                   {
-                       btnfollow.setText("following");
-                   }
-                   else
-                   {
-                       btnfollow.setText("follow");
-                   }
-               }
+        db_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(id).exists())
+                {
+                    btnfollow.setText("following");
+                }
+                else
+                {
+                    btnfollow.setText("follow");
+                }
+            }
 
-               @Override
-               public void onCancelled(@NonNull DatabaseError error) {}
-           });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 
     @Override

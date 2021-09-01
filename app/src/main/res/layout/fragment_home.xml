@@ -21,15 +21,15 @@
 
                 <ImageView
                     android:id="@+id/id_inbox"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
+                    android:layout_width="140dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/app_name_header"
                     android:layout_centerHorizontal="true">
                 </ImageView>
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/ic_inbox"
@@ -45,7 +45,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bar_layout">
+        android:layout_below="@+id/bar_layout"
+        android:layout_marginBottom="40dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,14 +57,13 @@
                 android:id="@+id/Recycler_view_Story"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_marginBottom="5dp">
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Recycler_view_Posts"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_height="wrap_content">
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_more"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp">
+        android:layout_margin="12dp">
     </ImageView>
 
     <LinearLayout
@@ -22,21 +22,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_post"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/ic_launcher">
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="2dp">
             </de.hdodenhof.circleimageview.CircleImageView>
 
             <TextView
                 android:id="@+id/username_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
+                android:text=""
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@android:style/TextAppearance.Medium">
@@ -61,7 +60,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/id_like"
@@ -95,8 +94,8 @@
             android:id="@+id/id_no_of_likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="10 Likes"
+            android:textSize="13sp"
+            android:text=""
             android:layout_marginStart="10dp">
         </TextView>
 
@@ -105,21 +104,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="Coder Alive"
-            android:textAppearance="18sp"
+            android:text=""
             android:textColor="@color/black"
-            android:layout_marginStart="12dp">
+            android:layout_marginStart="5dp">
         </TextView>
 
         <com.hendraanggrian.appcompat.widget.SocialTextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="Description...">
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="">
 
         </com.hendraanggrian.appcompat.widget.SocialTextView>
 
@@ -127,10 +126,10 @@
             android:id="@+id/id_no_of_Comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="5 comments"
-            android:layout_marginStart="12dp"
-            android:layout_marginBottom="5dp">
+            android:textSize="13sp"
+            android:text=""
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="2dp">
         </TextView>
 
     </LinearLayout>
