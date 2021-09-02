@@ -69,6 +69,8 @@ public class HomeFragment extends Fragment {
                 followingList.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                 //All others posts of following list users will now be shown in Home page Current user
+                //Current user is firebaseuser
+                //other user  are user
                 readPosts();
             }
 
