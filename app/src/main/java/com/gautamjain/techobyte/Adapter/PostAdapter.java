@@ -1,6 +1,7 @@
 package com.gautamjain.techobyte.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gautamjain.techobyte.CommentActivity;
 import com.gautamjain.techobyte.Modal.Post;
 import com.gautamjain.techobyte.Modal.User;
 import com.gautamjain.techobyte.R;
@@ -47,7 +49,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
     @Override
     public void onBindViewHolder(@NonNull PostAdapter.Viewholder holder, int position) {
 
-
         final Post post = mPost.get(position);
         Picasso.get().load(post.getImageUrl()).into(holder.imagePost);
         holder.description.setText(post.getDescription());
@@ -83,7 +84,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.like.getTag().equals("like"))
+                if(holder.like.getTag().equals("like"))// tag-> like -> if User not liked
                 {
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId())
                             .child(firebaseUser.getUid()).setValue(true);
@@ -95,6 +96,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
                 }
             }
         });
+
+//      <------------------------------------ Add Comment Activity -------------------------------------->
+
+        noOfComments(post.getPostId(), holder.no_of_comments);
+
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(mContext, CommentActivity.class);
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("authorId", post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
+        holder.no_of_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(mContext, CommentActivity.class);
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("authorId", post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
 
 
 
@@ -175,6 +201,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.Viewholder>{
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+
+//    <-------------------------------------- Count no of Comments -------------------------------------->
+
+    private void noOfComments(String postid, TextView text_comments)
+    {
+        FirebaseDatabase.getInstance().getReference().child("Comments").child(postid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                text_comments.setText("View all " + snapshot.getChildrenCount() + " Comments");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
 

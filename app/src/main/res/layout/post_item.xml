@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin = "2dp">
+            android:layout_margin = "3dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_post"
@@ -64,29 +64,31 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="5dp">
 
             <ImageView
                 android:id="@+id/id_like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/ic_like"
-                android:layout_marginStart="10dp">
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp">
             </ImageView>
 
             <ImageView
                 android:id="@+id/id_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_comment"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_toRightOf="@id/id_like">
             </ImageView>
 
             <ImageView
                 android:id="@+id/id_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_save"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="10dp">
@@ -110,6 +112,7 @@
             android:textSize="15sp"
             android:text=""
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_marginStart="5dp">
         </TextView>
 
@@ -122,6 +125,7 @@
             android:layout_marginEnd="10dp"
             android:textSize="15sp"
             android:textColor="@color/black"
+            app:hashtagColor="@color/purple_700"
             android:text="">
 
         </com.hendraanggrian.appcompat.widget.SocialTextView>

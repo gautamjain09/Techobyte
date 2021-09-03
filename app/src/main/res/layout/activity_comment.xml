@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".CommentActivity">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+<!--    <Toolbar-->
+<!--        android:id="@+id/id_toolbar_comment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="?android:attr/windowBackground">-->
+<!--    </Toolbar>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/id_recycler_post_comment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground">
-    </Toolbar>
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+<!--        android:layout_below="@+id/id_toolbar_comment" -->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,8 +31,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_profile_comment"
             android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@mipmap/ic_launcher">
+            android:layout_height="45dp">
         </de.hdodenhof.circleimageview.CircleImageView>
 
         <EditText
@@ -36,7 +43,20 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/image_profile_comment"
             android:hint="Add a Comment..."
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@+id/id_post_comment"/>
+
+        <TextView
+            android:id="@+id/id_post_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="POST"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/purple_700"
+            android:layout_marginEnd="15dp"
+            android:layout_centerVertical="true">
+
+        </TextView>
 
     </RelativeLayout>
 
