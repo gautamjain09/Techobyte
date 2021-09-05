@@ -6,20 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".CommentActivity">
 
-<!--    <Toolbar-->
-<!--        android:id="@+id/id_toolbar_comment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="?android:attr/windowBackground">-->
-<!--    </Toolbar>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/id_toolbar_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground">
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id_recycler_post_comment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_toolbar_comment">
     </androidx.recyclerview.widget.RecyclerView>
-
-<!--        android:layout_below="@+id/id_toolbar_comment" -->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,6 +41,7 @@
             android:layout_marginEnd="10dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/image_profile_comment"
+            android:textSize="18dp"
             android:hint="Add a Comment..."
             android:background="@android:color/transparent"
             android:layout_toLeftOf="@+id/id_post_comment"/>

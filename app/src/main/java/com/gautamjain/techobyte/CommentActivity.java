@@ -43,16 +43,16 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
 
-//        Toolbar toolbar = findViewById(R.id.id_toolbar_comment);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Comments");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();// redirected to post of user
-//            }
-//        });
+        Toolbar toolbar = findViewById(R.id.id_toolbar_comment);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Comments");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();// redirected to post of user
+            }
+        });
 
         Intent intent = getIntent();
         postId  = intent.getStringExtra("postId");
