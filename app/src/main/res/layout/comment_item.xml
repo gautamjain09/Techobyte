@@ -9,6 +9,7 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_profile_commenter"
             android:layout_width="45dp"
             android:layout_height="45dp">
         </de.hdodenhof.circleimageview.CircleImageView>
@@ -23,15 +24,20 @@
                 android:id="@+id/id_username_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:text="username">
+            </TextView>
+
+            <TextView
+                android:id="@+id/id_comment_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:text="This is a Comment">
             </TextView>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>
