@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="">
+                android:text="gggg">
             </TextView>
 
             <TextView
@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="5"
-                android:text="">
+                android:text="gggg"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small">
             </TextView>
 
         </LinearLayout>

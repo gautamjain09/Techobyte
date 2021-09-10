@@ -50,7 +50,7 @@ public class CommentAdapter extends  RecyclerView.Adapter<CommentAdapter.ViewHol
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        final Comment commentDescription = mComments.get(position);
+        Comment commentDescription = mComments.get(position);
 
         holder.commentDescription.setText(commentDescription.getComment());
 
